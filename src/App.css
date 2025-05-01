@@ -1,0 +1,94 @@
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: Arial, sans-serif;
+}
+
+h1 {
+  font-size: 2rem;
+  margin-bottom: 0.2rem;
+}
+
+.data-hora {
+  color: #555;
+  margin-bottom: 1rem;
+}
+
+.termometro-box {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.custom-thermometer {
+  width: 30px;
+  height: 150px;
+  border: 2px solid #ccc;
+  border-radius: 15px;
+  position: relative;
+  background: #f0f0f0;
+  overflow: hidden;
+}
+
+.custom-thermometer-fill {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  transition: height 0.5s ease, background-color 0.5s ease;
+}
+
+.temperatura-info .temperatura {
+  font-size: 2rem;
+  margin: 0;
+}
+
+.temperatura-info .sensacao {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #444;
+}
+
+.eventos .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.eventos h2 {
+  margin: 1rem 0 0.5rem 0;
+}
+
+select {
+  margin-left: 0.5rem;
+  padding: 0.3rem;
+  font-size: 0.95rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+th, td {
+  padding: 0.75rem;
+  border-bottom: 1px solid #ccc;
+  text-align: left;
+  font-size: 0.95rem;
+}
+
+@media (max-width: 600px) {
+  .termometro-box {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .eventos .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+}
