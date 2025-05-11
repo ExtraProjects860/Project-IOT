@@ -1,0 +1,1 @@
+from app.routes.default import router as default_routes

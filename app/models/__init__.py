@@ -1,0 +1,1 @@
+from app.models.temperature_incident import TemperatureIncident
