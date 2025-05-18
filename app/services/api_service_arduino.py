@@ -1,7 +1,7 @@
 from app import schemas
 from app import config
 from app import modules
-import app.utils as utils
+from app import utils
 from datetime import datetime, timedelta, UTC
 from typing import List
 
@@ -18,8 +18,8 @@ class ApiServiceArduino(modules.ApiService):
             headers={"Content-Type": "application/x-www-form-urlencoded"},
             data={
                 "grant_type": "client_credentials",
-                "client_id": config.CONFIG_ENV.get("CLIENT_ID_ARDUINO"),
-                "client_secret": config.CONFIG_ENV.get("CLIENT_SECRET_ARDUINO"),
+                "client_id": config.settings.client_id_arduino,
+                "client_secret": config.settings.client_secret_arduino,
                 "audience": self.get_base_url()
             }
         )
@@ -49,7 +49,7 @@ class ApiServiceArduino(modules.ApiService):
     async def iot_properties(self, _retry=False) -> utils.Result:
         try:
             response: schemas.ApiResponseSchema = await self.get(
-                endpoint=f"/v2/things/{config.CONFIG_ENV.get("THING_ID_ARDUINO")}/properties",
+                endpoint=f"/v2/things/{config.settings.thing_id_arduino}/properties",
                 headers={"Authorization": f"Bearer {self.__token}"},
             )
             await self.__is_error_status_code(response, _retry)
@@ -72,7 +72,7 @@ class ApiServiceArduino(modules.ApiService):
     def get_token_expiration(self) -> datetime | None:
         return self.__token_expiration
 
-    def __str__(self):
+    def __str__(self) -> str:
         return super().__str__() + f" token: {self.__token} token_expiration: {self.__token_expiration}"
 
 

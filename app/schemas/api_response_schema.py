@@ -34,3 +34,13 @@ def transform_dataclass_arduino(data: dict) -> List:
     # Transforma para dict para enviar ao front (ex: websocket ou json)
     raw_data = [asdict(prop) for prop in properties_dto]
     return utils.serialize_datetimes(raw_data)
+
+
+def extract_temperature_and_humidity(data: list[ArduinoDataResponseSchema]) -> dict:
+    result = {}
+    for item in data:
+        if item.variable_name == "temperature":
+            result["temperature"] = float(item.last_value)
+        elif item.variable_name == "humidity":
+            result["humidity"] = float(item.last_value)
+    return result

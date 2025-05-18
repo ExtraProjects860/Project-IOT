@@ -1,1 +1,2 @@
 from app.services.api_service_arduino import ApiServiceArduino, api_service_arduino
+from app.services.climate_record_service import climate_record_service

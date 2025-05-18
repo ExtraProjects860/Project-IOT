@@ -3,7 +3,7 @@ from fastapi.responses import JSONResponse, Response
 from app.services.example_service import do_something
 
 router = APIRouter(
-    tags=["default"]
+    tags=["Padrão para testes"]
 )
 
 @router.get("/")
