@@ -3,6 +3,7 @@ from typing import Any, AsyncIterator
 from sqlalchemy.ext.asyncio import (
     AsyncConnection,
     AsyncSession,
+    AsyncEngine,
     async_sessionmaker,
     create_async_engine,
 )
@@ -12,11 +13,11 @@ from app import config
 
 class DatabaseSessionManager:
     def __init__(self, host: str, engine_kwargs: dict[str, Any] = {}):
-        self.__engine = create_async_engine(host, **engine_kwargs)
+        self.__engine: AsyncEngine = create_async_engine(host, **engine_kwargs)
         self.sessionmaker = async_sessionmaker(
             autocommit=False, bind=self.__engine)
 
-    async def close(self):
+    async def close(self) -> None:
         if self.__engine is None:
             raise Exception("DatabaseSessionManager não iniciado")
         await self.__engine.dispose()
@@ -50,12 +51,7 @@ class DatabaseSessionManager:
         finally:
             await session.close()
 
-
-async def get_db_session():
-    async with sessionmanager.session() as session:
-        yield session
-
 Base = declarative_base()
 
-sessionmanager = DatabaseSessionManager(
+sessionmanager: DatabaseSessionManager = DatabaseSessionManager(
     config.settings.database_url, {"echo": config.settings.echo_sql})

@@ -8,7 +8,7 @@ class WebSocketClimateController:
     @router.websocket("/ws/climate-records")
     async def websocket_endpoint(websocket: WebSocket):
         await websocket.accept()
-        core.connected_clients.add(websocket)
+        core.climate_mediator.get_connected_clients().add(websocket)
 
         try:
             while True:
@@ -16,4 +16,4 @@ class WebSocketClimateController:
         except:
             pass
         finally:
-            core.connected_clients.remove(websocket)
+            core.climate_mediator.get_connected_clients().remove(websocket)

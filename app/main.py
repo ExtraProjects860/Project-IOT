@@ -33,7 +33,7 @@ class App:
         logs.logger.debug("CORS Middleware aplicado")
 
     def __startup_events(self):
-        self.__app.add_event_handler("startup", events.startup_event)
+        self.__app.add_event_handler("startup", events.startup_coordinator.run_startup)
         self.__app.add_event_handler("shutdown", events.shutdown_event)
         logs.logger.debug("Evento de startup registrado")
     

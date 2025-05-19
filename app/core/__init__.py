@@ -1,2 +1,1 @@
-from app.core.scheduler import scheduler, send_data_job
-from app.core.state import connected_clients
+from app.core.climate_data_mediator import ClimateDataMediator, climate_mediator
