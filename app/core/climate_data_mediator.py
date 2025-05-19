@@ -4,7 +4,7 @@ from app import logs
 from app import utils
 from app import schemas
 
-
+# isso daqui não está ideal arrumar dps para melhorar o SRP
 class ClimateDataMediator:
     def __init__(self, api_service: modules.ApiService, record_service: services.ClimateRecordService, connected_clients: set):
         self.__api_service: modules.ApiService = api_service
@@ -13,24 +13,24 @@ class ClimateDataMediator:
 
     async def handle_send_data_job(self) -> None:
         logs.logger.info("Coletando dados da Arduino API...")
-        result: utils.Result = await self.__api_service.get_token()
+        result_token: utils.Result = await self.__api_service.get_token()
 
-        if result.is_failure:
-            logs.logger.error(f"Erro ao obter token na inicialização: {result.failure()}")
+        if result_token.is_failure:
+            logs.logger.error(f"Erro ao obter token na inicialização: {result_token.failure()}")
             return
 
-        result = await self.__api_service.iot_properties()
-        if result.is_failure:
-            logs.logger.warning(f"Erro ao coletar dados: {result.failure()}")
+        result_iot = await self.__api_service.iot_properties()
+        if result_iot.is_failure:
+            logs.logger.warning(f"Erro ao coletar dados: {result_iot.failure()}")
             return
 
-        raw_data_iot: list[dict] = result.unwrap()
+        raw_data_iot: list[dict] = result_iot.unwrap()
 
         await self.__send_to_clients(raw_data_iot)
 
-        result = await self.__save_to_db(raw_data_iot)
-        if result.is_failure:
-            logs.logger.warning(f"Erro ao armazenar dados: {result.failure()}")
+        result_record = await self.__save_to_db(raw_data_iot)
+        if result_record.is_failure:
+            logs.logger.warning(f"Erro ao armazenar dados: {result_record.failure()}")
             return
 
     async def __send_to_clients(self, data: list) -> None:

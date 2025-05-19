@@ -5,7 +5,7 @@ from datetime import datetime, UTC
 from logging.handlers import RotatingFileHandler
 from app import config
 
-
+# organizar isso em uma classe de proxy dps
 log_dir = "logs/files_logs"
 os.makedirs(log_dir, exist_ok=True)
 

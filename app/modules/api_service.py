@@ -1,5 +1,5 @@
 import httpx
-import app.schemas as schemas
+from app import schemas
 from abc import ABC
 
 

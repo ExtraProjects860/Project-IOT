@@ -14,7 +14,7 @@ class ClimateRecordController:
         try:
             result: utils.Result = await services.climate_record_service.get_records(page, quantity_records)
             if result.is_success:
-                return JSONResponse(status_code=200, content={"data": result.unwrap()})
+                return JSONResponse(status_code=200, content=result.unwrap())
             else:
                 return JSONResponse(status_code=500, content={"error": str(result.error)})
         except Exception as e:

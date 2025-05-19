@@ -1,7 +1,8 @@
-from app import core
 from app import config
 from app import logs
 from .startup_event import startup_coordinator
+
+# criar uma classe de coordinator aqui dps
 
 
 async def shutdown_event():

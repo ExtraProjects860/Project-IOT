@@ -1,13 +1,17 @@
 from app import models
 from app import utils
 from app import config
+from app import modules
+from .email_send_gmail import EmailSendGmail
+from .tls_transport import TLSTransport
 from sqlalchemy.ext.asyncio import AsyncSession
 
 
 class ClimateRecordService:
     # lembrar de colocar o email_service_gmail como dependência externa
-    def __init__(self, database: AsyncSession):
+    def __init__(self, database: AsyncSession, email_sender: modules.EmailConfiguration):
         self.__database: AsyncSession = database
+        self.__email_sender: modules.EmailConfiguration = email_sender
         self.__should_store_temperature: bool = True
 
     def __calculate_temperature_sensation(self, temperature: float, humidity: float) -> float:
@@ -65,6 +69,9 @@ class ClimateRecordService:
             await self.__database.commit()
             await self.__database.refresh(record)
 
+            await self.__email_sender.send_email(
+                "oversouls11@gmail.com", "email_test", record.to_dict())
+
             return utils.Success(record)
         except Exception as e:
             return utils.Failure(e)
@@ -82,5 +89,19 @@ class ClimateRecordService:
         return f"database: {self.__database} should_store_temperature: {self.__should_store_temperature}"
 
 
+transport: TLSTransport = TLSTransport(
+    config.email_settings.hostname,
+    config.email_settings.port,
+)
+
+email_sender: EmailSendGmail = EmailSendGmail(
+    config.email_settings.email,
+    config.email_settings.password,
+    config.email_settings.subject,
+    transport
+)
+
 climate_record_service: ClimateRecordService = ClimateRecordService(
-    config.sessionmanager.sessionmaker())
+    config.sessionmanager.sessionmaker(),
+    email_sender,
+)
