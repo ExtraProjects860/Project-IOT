@@ -79,6 +79,29 @@ th, td {
   text-align: left;
   font-size: 0.95rem;
 }
+.tabela-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.tabela-wrapper table {
+  min-width: 500px; 
+}
+
+.aviso-scroll {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #666;
+  margin-top: 0.5rem;
+  display: none;
+}
+
+@media (max-width: 600px) {
+  .aviso-scroll {
+    display: block;
+  }
+}
+
 
 @media (max-width: 600px) {
   .termometro-box {

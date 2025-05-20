@@ -26,7 +26,7 @@ function App() {
       setDataHoraAtual(`${data} ${hora}`);
     }, 1000);
 
-    return () => clearInterval(interval); 
+    return () => clearInterval(interval);
   }, []);
 
   useEffect(() => {
@@ -90,7 +90,7 @@ function App() {
 
   useEffect(() => {
     fetch(
-      `http://localhost:8000/climate-records?page=${paginaAtual}&quantity_records=10`,
+      `http://localhost:8000/climate-records?page=${paginaAtual}&quantity_records=5`,
       {
         headers: {
           Accept: "application/json",
@@ -113,6 +113,7 @@ function App() {
               minute: "2-digit",
             }),
             temperatura: `${item.temperature.toFixed(1)}ºC`,
+            sensacao: `${item.thermal_sensation.toFixed(1)}ºC`,
           };
         });
 
@@ -122,7 +123,7 @@ function App() {
       .catch((error) => {
         console.error("Erro ao buscar eventos:", error);
       });
-  }, [paginaAtual]); 
+  }, [paginaAtual]);
 
   const eventosFiltrados = eventos.filter((evento) => {
     const [dia, mes, ano] = evento.data.split("/");
@@ -185,25 +186,30 @@ function App() {
             </select>
           </label>
         </div>
-
-        <table>
-          <thead>
-            <tr>
-              <th>Data</th>
-              <th>Hora</th>
-              <th>Temperatura</th>
-            </tr>
-          </thead>
-          <tbody>
-            {eventosFiltrados.map((evento, index) => (
-              <tr key={index}>
-                <td>{evento.data}</td>
-                <td>{evento.hora}</td>
-                <td>{evento.temperatura}</td>
+        <div className="tabela-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Data</th>
+                <th>Hora</th>
+                <th>Temperatura</th>
+                <th>Sensação Térmica</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+
+            <tbody>
+              {eventosFiltrados.map((evento, index) => (
+                <tr key={index}>
+                  <td>{evento.data}</td>
+                  <td>{evento.hora}</td>
+                  <td>{evento.temperatura}</td>
+                  <td>{evento.sensacao}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p className="aviso-scroll">🔁 Role a tabela para o lado →</p>
       </div>
       <div className="paginacao-numerica">
         <span>Página:</span>
