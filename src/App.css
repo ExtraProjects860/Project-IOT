@@ -1,0 +1,202 @@
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: Arial, sans-serif;
+}
+
+h1 {
+  font-size: 2rem;
+  margin-bottom: 0.2rem;
+}
+
+.data-hora {
+  color: #555;
+  margin-bottom: 1rem;
+}
+
+.termometro-box {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.custom-thermometer {
+  width: 30px;
+  height: 150px;
+  border: 2px solid #ccc;
+  border-radius: 15px;
+  position: relative;
+  background: #f0f0f0;
+  overflow: hidden;
+}
+
+.custom-thermometer-fill {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  transition: height 0.5s ease, background-color 0.5s ease;
+}
+
+.temperatura-info .temperatura {
+  font-size: 2rem;
+  margin: 0;
+}
+
+.temperatura-info .sensacao {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #444;
+}
+
+.eventos .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.eventos h2 {
+  margin: 1rem 0 0.5rem 0;
+}
+
+select {
+  margin-left: 0.5rem;
+  padding: 0.3rem;
+  font-size: 0.95rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+th, td {
+  padding: 0.75rem;
+  border-bottom: 1px solid #ccc;
+  text-align: left;
+  font-size: 0.95rem;
+}
+.tabela-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.tabela-wrapper table {
+  min-width: 500px; 
+}
+
+.aviso-scroll {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #666;
+  margin-top: 0.5rem;
+  display: none;
+}
+
+@media (max-width: 600px) {
+  .aviso-scroll {
+    display: block;
+  }
+}
+
+
+@media (max-width: 600px) {
+  .termometro-box {
+    flex-direction: row;
+  }
+
+  .eventos .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+}
+
+.animar {
+  animation: destaque 0.5s ease-in-out;
+}
+
+@keyframes destaque {
+  0% {
+    transform: scale(1);
+    background-color: rgba(255, 230, 0, 0.2);
+  }
+  50% {
+    transform: scale(1.1);
+    background-color: rgba(255, 230, 0, 0.4);
+  }
+  100% {
+    transform: scale(1);
+    background-color: transparent;
+  }
+}
+
+
+.paginacao-numerica {
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: center;
+}
+
+.paginacao-numerica button {
+  padding: 5px 10px;
+  border: 1px solid #007bff;
+  background-color: white;
+  color: #007bff;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.paginacao-numerica button:hover {
+  background-color: #007bff;
+  color: white;
+}
+
+.paginacao-numerica button.ativo {
+  background-color: #007bff;
+  color: white;
+  cursor: default;
+}
+
+.loading-temp {
+  padding: 20px 0;
+  font-style: italic;
+  color: #888;
+  font-size: 1.2rem;
+}
+
+.spinner-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-style: italic;
+  color: #888;
+  font-size: 1.1rem;
+  padding: 20px 0;
+  justify-content: center;
+}
+
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 3px solid #ccc;
+  border-top: 3px solid #007bff;
+  border-radius: 50%;
+  animation: girar 1s linear infinite;
+}
+
+@keyframes girar {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
