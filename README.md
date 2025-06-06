@@ -52,6 +52,10 @@ O sistema oferece diversas funcionalidades para o monitoramento e controle ambie
 - Parte 2 do Diagrama:
 ![Parte 2 do Diagrama](https://github.com/ExtraProjects860/Project-IOT/blob/master/imgs/Parte-2.jpg)
 
+## Esquema Elétrico
+
+![Esquema Elétrico do Projeto](https://github.com/ExtraProjects860/Project-IOT/blob/master/imgs/schema%20do%20prot%C3%B3tipo.jpeg)
+
 ## Esboços do Projeto
 - Tela Principal:
 ![Tela Princippal](https://github.com/ExtraProjects860/Project-IOT/blob/master/imgs/Tela%20Principal.png)
