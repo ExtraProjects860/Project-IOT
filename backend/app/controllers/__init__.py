@@ -1,0 +1,3 @@
+from app.controllers.default_controller import router as default_router
+from app.controllers.websocket_climate_record_controller import router as ws_climate_record_router
+from app.controllers.climate_record_controller import router as climate_record_router

@@ -1,0 +1,1 @@
+from app.core.climate_data_mediator import ClimateDataMediator, climate_mediator
