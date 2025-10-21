@@ -66,7 +66,7 @@ O sistema oferece diversas funcionalidades para o monitoramento e controle ambie
 ## Equipe
 Este Projeto está sendo desenvolvido pela equipe:
 
-- [Davi Nascimento](https://github.com/zedark860) - Desenvolvedor Backend e criação/controle do Banco de Dados;
+- [Davi Nascimento](https://github.com/DaviRodrigues) - Desenvolvedor Backend e criação/controle do Banco de Dados;
 - [Gustavo Rodrigues](https://github.com/Gvcrodrigues99) - Realização de Testes e criação/controle da Documentação do Projeto;
 - [Jamil Salomão](https://github.com/jamilsalomao) - Desenvolvedor Frontend e UI/UX;
 - [Tarcísio Alves](https://github.com/Tarcisio1234) - Prototipação do Projeto e Testes.
